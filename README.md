@@ -48,6 +48,19 @@ cd build
 
 ## Triton
 
-How to generate PTX from Triton: https://github.com/triton-lang/triton/issues/2166
+## Example Pairs of equivalent PTX
+[matmul0](https://github.com/Anjiang-Wei/PTX_dataset/blob/main/triton_ptx/gated_mlp/0/matmul_kernel.ptx)
+[matmul1](https://github.com/Anjiang-Wei/PTX_dataset/blob/main/triton_ptx/gated_mlp/1/matmul_kernel.ptx) ([All matmuls](https://github.com/Anjiang-Wei/PTX_dataset/blob/main/triton_ptx/gated_mlp/))
+
+[gqa0](https://github.com/Anjiang-Wei/PTX_dataset/blob/main/triton_ptx/gqa/0/_attn_fwd.ptx)
+[gqa1](https://github.com/Anjiang-Wei/PTX_dataset/blob/main/triton_ptx/gqa/1/_attn_fwd.ptx) ([All GQAs](https://github.com/Anjiang-Wei/PTX_dataset/tree/main/triton_ptx/gqa))
+
+To generate them, use auto-tuning from Triton:
+```
+python3 gated_mlp.py
+python3 gqa.py
+```
+
+The helper function is `triton_ptx_dump.py`
 
 ## TVM
