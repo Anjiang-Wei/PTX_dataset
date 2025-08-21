@@ -1,3 +1,6 @@
 [submodule "mirage_ptx"]
 	path = mirage_ptx
 	url = git@github.com:Anjiang-Wei/mirage_ptx.git
+[submodule "cutlass_ptx"]
+	path = cutlass_ptx
+	url = git@github.com:Anjiang-Wei/cutlass_ptx.git
