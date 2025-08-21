@@ -7,6 +7,7 @@ https://github.com/Anjiang-Wei/mirage_ptx/tree/evaluation/dataset
 #### Example Equivalent PTX code:
 https://github.com/Anjiang-Wei/mirage_ptx/tree/evaluation/dataset_ptx
 
+They are all equivalent, based on different schedules explored by superoptimization.
 
 #### Generation method:
 First generate CUDA code based on the saved schedule for GQA kernel according to the AE readme https://github.com/mirage-project/mirage/blob/evaluation/ae.md
