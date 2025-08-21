@@ -18,6 +18,10 @@ Then lower to PTX with this script https://github.com/Anjiang-Wei/mirage_ptx/blo
 
 ## Cutlass
 
+### Example Generated CUDA code
+https://github.com/Anjiang-Wei/cutlass_ptx/tree/main/build/tools/library/generated/gemm/80
+(but some may be MM with transpose, need to take a look at the filenames)
+
 #### Generation method
 Cutlass profiler can generate equivalent CUDA code while searching for the best configuration https://github.com/Anjiang-Wei/cutlass_ptx/blob/main/media/docs/cpp/profiler.md
 ```
