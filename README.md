@@ -48,7 +48,7 @@ cd build
 
 ## Triton
 
-## Example Pairs of equivalent PTX
+### Example Pairs of equivalent PTX
 [matmul0](https://github.com/Anjiang-Wei/PTX_dataset/blob/main/triton_ptx/gated_mlp/0/matmul_kernel.ptx)
 [matmul1](https://github.com/Anjiang-Wei/PTX_dataset/blob/main/triton_ptx/gated_mlp/1/matmul_kernel.ptx) ([All matmuls](https://github.com/Anjiang-Wei/PTX_dataset/blob/main/triton_ptx/gated_mlp/))
 
