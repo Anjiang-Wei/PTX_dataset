@@ -1,12 +1,24 @@
 import pytest
 import torch
+import os
+from pathlib import Path
+from triton_ptx_dump import dump_ptx_once, _collect_triton_bins
+
+
+_OUT_DIR = Path(__file__).with_suffix('').name         # "gated_mlp.py" -> "gated_mlp"
+_RAW_DIR = Path(_OUT_DIR) / "raw"                      # hashed bins live here
+_RAW_DIR.mkdir(parents=True, exist_ok=True)
+
+os.environ["TRITON_CACHE_DIR"] = str(_RAW_DIR.resolve())
+os.environ["TRITON_DUMP_ASM"] = "1"
+print(f"[ptx-dump] Triton dumping into: {_RAW_DIR}")
 
 import triton
 import triton.language as tl
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-b', '--batch', type=int, required=True)
+parser.add_argument('-b', '--batch', type=int, required=False, default=1)
 args = parser.parse_args()
 print("Batch size", args.batch)
 
@@ -86,6 +98,16 @@ def _attn_fwd_inner(acc, l_i, m_i, q,  #
 #    ],
 #    key=['N_CTX'],
 # )
+
+@triton.autotune(
+    configs=[
+        triton.Config({'BLOCK_M': 128, 'BLOCK_N': 64}, num_stages=4, num_warps=8),
+        triton.Config({'BLOCK_M': 256, 'BLOCK_N': 64}, num_stages=3, num_warps=8),
+        triton.Config({'BLOCK_M': 256, 'BLOCK_N': 32}, num_stages=3, num_warps=8),
+        triton.Config({'BLOCK_M': 128, 'BLOCK_N': 32}, num_stages=4, num_warps=4),
+    ],
+    key=['Q_CTX']  # any runtime arg that varies works; Q_CTX is fine
+)
 
 
 @triton.jit
@@ -197,23 +219,44 @@ class _attention(torch.autograd.Function):
         num_stages = 4 if Lk <= 64 else 3
         num_warps = 4
         stage = 3 if causal else 1
-        grid = (triton.cdiv(q.shape[2], BLOCK_M), q.shape[0] * q.shape[1], 1)
+        # grid = (triton.cdiv(q.shape[2], BLOCK_M), q.shape[0] * q.shape[1], 1)
+        # M = torch.empty((q.shape[0], q.shape[1], q.shape[2]), device=q.device, dtype=torch.float32)
+        # _attn_fwd[grid](
+        #     q, k, v, sm_scale, M, o,  #
+        #     q.stride(0), q.stride(1), q.stride(2), q.stride(3),  #
+        #     k.stride(0), k.stride(1), k.stride(2), k.stride(3),  #
+        #     v.stride(0), v.stride(1), v.stride(2), v.stride(3),  #
+        #     o.stride(0), o.stride(1), o.stride(2), o.stride(3),  #
+        #     q.shape[0], q.shape[1],  #
+        #     Q_CTX=q.shape[2],  #
+        #     KV_CTX=k.shape[2], #
+        #     BLOCK_M=BLOCK_M,  #
+        #     BLOCK_N=BLOCK_N,  #
+        #     BLOCK_DMODEL=Lk,  #
+        #     STAGE=stage,  #
+        #     num_warps=num_warps,  #
+        #     num_stages=num_stages  #
+        # )
+        # grid depends on tuned BLOCK_M
+        grid = lambda META: (
+            triton.cdiv(q.shape[2], META['BLOCK_M']),   # M blocks
+            q.shape[0] * q.shape[1],                    # Z*H
+            1
+        )
+
         M = torch.empty((q.shape[0], q.shape[1], q.shape[2]), device=q.device, dtype=torch.float32)
         _attn_fwd[grid](
-            q, k, v, sm_scale, M, o,  #
-            q.stride(0), q.stride(1), q.stride(2), q.stride(3),  #
-            k.stride(0), k.stride(1), k.stride(2), k.stride(3),  #
-            v.stride(0), v.stride(1), v.stride(2), v.stride(3),  #
-            o.stride(0), o.stride(1), o.stride(2), o.stride(3),  #
-            q.shape[0], q.shape[1],  #
-            Q_CTX=q.shape[2],  #
-            KV_CTX=k.shape[2], #
-            BLOCK_M=BLOCK_M,  #
-            BLOCK_N=BLOCK_N,  #
-            BLOCK_DMODEL=Lk,  #
-            STAGE=stage,  #
-            num_warps=num_warps,  #
-            num_stages=num_stages  #
+            q, k, v, sm_scale, M, o,
+            q.stride(0), q.stride(1), q.stride(2), q.stride(3),
+            k.stride(0), k.stride(1), k.stride(2), k.stride(3),
+            v.stride(0), v.stride(1), v.stride(2), v.stride(3),
+            o.stride(0), o.stride(1), o.stride(2), o.stride(3),
+            q.shape[0], q.shape[1],
+            Q_CTX=q.shape[2],
+            KV_CTX=k.shape[2],
+            BLOCK_DMODEL=Lk,      # keep this constexpr
+            STAGE=(3 if causal else 1)  # keep this constexpr
+            # DO NOT pass BLOCK_M, BLOCK_N, num_warps, num_stages here — autotune controls them
         )
 
         ctx.save_for_backward(q, k, v, o, M)
@@ -280,3 +323,4 @@ def bench_flash_attention(BATCH, Q_HEADS, KV_HEADS, Q_CTX, KV_CTX, D_HEAD, causa
 
 # only works on post-Ampere GPUs right now
 bench_flash_attention.run(save_path=".", print_data=True)
+_collect_triton_bins(_RAW_DIR, Path(_OUT_DIR))
