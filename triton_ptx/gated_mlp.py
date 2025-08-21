@@ -1,12 +1,24 @@
 import pytest
 import torch
+import os
+from pathlib import Path
+from triton_ptx_dump import dump_ptx_once, _collect_triton_bins
+
+
+_OUT_DIR = Path(__file__).with_suffix('').name         # "gated_mlp.py" -> "gated_mlp"
+_RAW_DIR = Path(_OUT_DIR) / "raw"                      # hashed bins live here
+_RAW_DIR.mkdir(parents=True, exist_ok=True)
+
+os.environ["TRITON_CACHE_DIR"] = str(_RAW_DIR.resolve())
+os.environ["TRITON_DUMP_ASM"] = "1"
+print(f"[ptx-dump] Triton dumping into: {_RAW_DIR}")
 
 import triton
 import triton.language as tl
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-b', '--batch', type=int, required=True)
+parser.add_argument('-b', '--batch', type=int, required=False, default=1)
 args = parser.parse_args()
 print("Batch size", args.batch)
 
@@ -148,6 +160,7 @@ def matmul(a, b, activation=""):
         c.stride(0), c.stride(1),  #
         ACTIVATION=activation  #
     )
+    # _ = dump_ptx_once(matmul_kernel, out_dir=".")
     return c
 
 
@@ -193,6 +206,7 @@ class _gated_mlp(torch.autograd.Function):
         n_elements = X.numel()
         O = torch.empty_like(X)
         mul_kernel[grid](O1, O2, O, n_elements, BLOCK_SIZE=1024)
+        #_ = dump_ptx_once(mul_kernel, out_dir=".")
         return O
 
 gated_mlp = _gated_mlp.apply
@@ -232,3 +246,6 @@ def bench_test(BATCH, mode, provider, dtype=torch.float16, device="cuda"):
 
 # only works on post-Ampere GPUs right now
 bench_test.run(save_path=".", print_data=True)
+
+# Collect dumped artifacts into gated_mlp/0, gated_mlp/1, ...
+_collect_triton_bins(_RAW_DIR, Path(_OUT_DIR))
