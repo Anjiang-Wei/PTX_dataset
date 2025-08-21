@@ -4,3 +4,6 @@
 [submodule "cutlass_ptx"]
 	path = cutlass_ptx
 	url = git@github.com:Anjiang-Wei/cutlass_ptx.git
+[submodule "tvm_ptx"]
+	path = tvm_ptx
+	url = git@github.com:Anjiang-Wei/TVM_PTX.git
