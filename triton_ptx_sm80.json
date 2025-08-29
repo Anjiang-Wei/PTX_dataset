@@ -1,0 +1,429 @@
+{
+  "search_directory": "/home/ubuntu/PTX_dataset/triton_ptx/sm80",
+  "total_ptx_files": 42,
+  "analysis_timestamp": "2025-08-29T04:23:09.585572",
+  "keywords": {
+    "sync": {
+      "count": 40,
+      "files": [
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/7/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/2/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/11/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/14/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/1/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/3/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/0/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/UPJD3Z74SJ7OX7B3SACD5WP2SK6M25TPSKE7QMNZB77V4Z4VNRFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/Y6ZGIHOPNW7STR4N6GBBD57TN55MDNST474VAW477RAAVIM77IUQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NK47JNZEJUJR5TXKPRRKUQU2WUXS33ZZN3XNPDBSGECZ5CAMKPFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TZ2ZVCKWRVMUO4CVCLBEXGO4H7GYAGEUL7AGW2354PDTRL5I654Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/GA7RSE4UHX7ROV5ZDGXLRL4CMBYQX6J3TFGSCXELVWHFLVS32YKA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/DJVLBA56V32RTKGMUEPWDFD2O5ADLY7PAECY3M4WN6R5HHX37PJQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/2AIIS5QJCLT6V2JW5KICJPVDPQBSLO4KZQKVZYW4ZELQO6SLF7KQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/ZAMIQB26HIWN3G4UNSB7NU52ZSXXZ2VFT77ZYHQJ3R5FGJO3UAPQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/FE7ICRIK7FO62DAFWIBFHLXKUJ2RRKU46FZZVIJVVYE646KFJW5A/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NAC5VU7FPTVIJBB3Q2WATBBDOFVKZKVIPU3O74ZLEQDLVXAUAGAA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/CVPKSGZV7FTBR23YK4JEVLZ5O4JZWAI67VAN3CFZPWMMCHJLZH3Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/KBFGCG4YRKEV3U56HOXD6WGEAHKQL7ZG2NTHULGTBLKEJLP5LZNQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/XFSNYVFQMP6ODK4MTWFZLQIJTMGOKFN327AOPPHYBRI7VRWTTTZQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TBFU46SHUWRVAL4L6KMRTHXAWCSDUW3O347I5EKM7BJWZGMSIOWQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/E7HVX2BZ6A2EWUTFWF5DDWPCTWPWUKJWW2CVAQEZMTM6CJHJHNGQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/QGZB2ZRA2LQTDR7RKMKUCJLRQLS7V26KYEBWWFQUMR346RRLB4RQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/12/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/10/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/8/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/15/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/4/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/9/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/13/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/6/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/2/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/1/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/3/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/0/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/B3G4XVS2FV5JYC2UQNSSML7MTGTEGBZXC34FPPGC77T5RMLIXOQQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/ABUILAJPK2TREHN6M3ZFBPL5SROUN5UEDNEHMJUM6TJ5A3SYDFDQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/S6QIMYTAOY5BGMSEOSS6NMYRDF3GP4LPD6LS6P5UPBOYUVDIRMMA/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/V4QBGM73VJDWWPKKKHQS4HZ2LUP7VLSE5DUGTMW7U5LZ6Q2DCENQ/_attn_fwd.ptx"
+      ],
+      "example": "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx"
+    },
+    "bar.warp.sync": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "expf": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "ex2": {
+      "count": 8,
+      "files": [
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/2/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/1/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/3/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/0/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/B3G4XVS2FV5JYC2UQNSSML7MTGTEGBZXC34FPPGC77T5RMLIXOQQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/ABUILAJPK2TREHN6M3ZFBPL5SROUN5UEDNEHMJUM6TJ5A3SYDFDQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/S6QIMYTAOY5BGMSEOSS6NMYRDF3GP4LPD6LS6P5UPBOYUVDIRMMA/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/V4QBGM73VJDWWPKKKHQS4HZ2LUP7VLSE5DUGTMW7U5LZ6Q2DCENQ/_attn_fwd.ptx"
+      ],
+      "example": "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/2/_attn_fwd.ptx"
+    },
+    "lg2": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "sin": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "cos": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "tan": {
+      "count": 40,
+      "files": [
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/7/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/2/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/11/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/14/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/1/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/3/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/0/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/UPJD3Z74SJ7OX7B3SACD5WP2SK6M25TPSKE7QMNZB77V4Z4VNRFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/Y6ZGIHOPNW7STR4N6GBBD57TN55MDNST474VAW477RAAVIM77IUQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NK47JNZEJUJR5TXKPRRKUQU2WUXS33ZZN3XNPDBSGECZ5CAMKPFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TZ2ZVCKWRVMUO4CVCLBEXGO4H7GYAGEUL7AGW2354PDTRL5I654Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/GA7RSE4UHX7ROV5ZDGXLRL4CMBYQX6J3TFGSCXELVWHFLVS32YKA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/DJVLBA56V32RTKGMUEPWDFD2O5ADLY7PAECY3M4WN6R5HHX37PJQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/2AIIS5QJCLT6V2JW5KICJPVDPQBSLO4KZQKVZYW4ZELQO6SLF7KQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/ZAMIQB26HIWN3G4UNSB7NU52ZSXXZ2VFT77ZYHQJ3R5FGJO3UAPQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/FE7ICRIK7FO62DAFWIBFHLXKUJ2RRKU46FZZVIJVVYE646KFJW5A/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NAC5VU7FPTVIJBB3Q2WATBBDOFVKZKVIPU3O74ZLEQDLVXAUAGAA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/CVPKSGZV7FTBR23YK4JEVLZ5O4JZWAI67VAN3CFZPWMMCHJLZH3Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/KBFGCG4YRKEV3U56HOXD6WGEAHKQL7ZG2NTHULGTBLKEJLP5LZNQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/XFSNYVFQMP6ODK4MTWFZLQIJTMGOKFN327AOPPHYBRI7VRWTTTZQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TBFU46SHUWRVAL4L6KMRTHXAWCSDUW3O347I5EKM7BJWZGMSIOWQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/E7HVX2BZ6A2EWUTFWF5DDWPCTWPWUKJWW2CVAQEZMTM6CJHJHNGQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/QGZB2ZRA2LQTDR7RKMKUCJLRQLS7V26KYEBWWFQUMR346RRLB4RQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/12/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/10/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/8/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/15/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/4/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/9/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/13/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/6/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/2/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/1/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/3/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/0/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/B3G4XVS2FV5JYC2UQNSSML7MTGTEGBZXC34FPPGC77T5RMLIXOQQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/ABUILAJPK2TREHN6M3ZFBPL5SROUN5UEDNEHMJUM6TJ5A3SYDFDQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/S6QIMYTAOY5BGMSEOSS6NMYRDF3GP4LPD6LS6P5UPBOYUVDIRMMA/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/V4QBGM73VJDWWPKKKHQS4HZ2LUP7VLSE5DUGTMW7U5LZ6Q2DCENQ/_attn_fwd.ptx"
+      ],
+      "example": "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx"
+    },
+    "tanh": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "sqrt": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "rsqrt": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "rcp": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "arrive": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "mma": {
+      "count": 40,
+      "files": [
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/7/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/2/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/11/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/14/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/1/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/3/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/0/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/UPJD3Z74SJ7OX7B3SACD5WP2SK6M25TPSKE7QMNZB77V4Z4VNRFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/Y6ZGIHOPNW7STR4N6GBBD57TN55MDNST474VAW477RAAVIM77IUQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NK47JNZEJUJR5TXKPRRKUQU2WUXS33ZZN3XNPDBSGECZ5CAMKPFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TZ2ZVCKWRVMUO4CVCLBEXGO4H7GYAGEUL7AGW2354PDTRL5I654Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/GA7RSE4UHX7ROV5ZDGXLRL4CMBYQX6J3TFGSCXELVWHFLVS32YKA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/DJVLBA56V32RTKGMUEPWDFD2O5ADLY7PAECY3M4WN6R5HHX37PJQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/2AIIS5QJCLT6V2JW5KICJPVDPQBSLO4KZQKVZYW4ZELQO6SLF7KQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/ZAMIQB26HIWN3G4UNSB7NU52ZSXXZ2VFT77ZYHQJ3R5FGJO3UAPQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/FE7ICRIK7FO62DAFWIBFHLXKUJ2RRKU46FZZVIJVVYE646KFJW5A/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NAC5VU7FPTVIJBB3Q2WATBBDOFVKZKVIPU3O74ZLEQDLVXAUAGAA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/CVPKSGZV7FTBR23YK4JEVLZ5O4JZWAI67VAN3CFZPWMMCHJLZH3Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/KBFGCG4YRKEV3U56HOXD6WGEAHKQL7ZG2NTHULGTBLKEJLP5LZNQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/XFSNYVFQMP6ODK4MTWFZLQIJTMGOKFN327AOPPHYBRI7VRWTTTZQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TBFU46SHUWRVAL4L6KMRTHXAWCSDUW3O347I5EKM7BJWZGMSIOWQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/E7HVX2BZ6A2EWUTFWF5DDWPCTWPWUKJWW2CVAQEZMTM6CJHJHNGQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/QGZB2ZRA2LQTDR7RKMKUCJLRQLS7V26KYEBWWFQUMR346RRLB4RQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/12/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/10/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/8/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/15/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/4/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/9/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/13/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/6/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/2/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/1/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/3/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/0/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/B3G4XVS2FV5JYC2UQNSSML7MTGTEGBZXC34FPPGC77T5RMLIXOQQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/ABUILAJPK2TREHN6M3ZFBPL5SROUN5UEDNEHMJUM6TJ5A3SYDFDQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/S6QIMYTAOY5BGMSEOSS6NMYRDF3GP4LPD6LS6P5UPBOYUVDIRMMA/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/V4QBGM73VJDWWPKKKHQS4HZ2LUP7VLSE5DUGTMW7U5LZ6Q2DCENQ/_attn_fwd.ptx"
+      ],
+      "example": "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx"
+    },
+    "wmma": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "tcgen": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "vote": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "shuffle": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "ballot": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "activemask": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "redux": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "mbarrier": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "fence": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "cluster": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "atom": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "membar": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "red": {
+      "count": 42,
+      "files": [
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/7/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/2/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/11/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/14/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/1/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/3/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/16/mul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/0/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/UPJD3Z74SJ7OX7B3SACD5WP2SK6M25TPSKE7QMNZB77V4Z4VNRFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/Y6ZGIHOPNW7STR4N6GBBD57TN55MDNST474VAW477RAAVIM77IUQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NK47JNZEJUJR5TXKPRRKUQU2WUXS33ZZN3XNPDBSGECZ5CAMKPFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TZ2ZVCKWRVMUO4CVCLBEXGO4H7GYAGEUL7AGW2354PDTRL5I654Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/GA7RSE4UHX7ROV5ZDGXLRL4CMBYQX6J3TFGSCXELVWHFLVS32YKA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/DJVLBA56V32RTKGMUEPWDFD2O5ADLY7PAECY3M4WN6R5HHX37PJQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/2AIIS5QJCLT6V2JW5KICJPVDPQBSLO4KZQKVZYW4ZELQO6SLF7KQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/ZAMIQB26HIWN3G4UNSB7NU52ZSXXZ2VFT77ZYHQJ3R5FGJO3UAPQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/FE7ICRIK7FO62DAFWIBFHLXKUJ2RRKU46FZZVIJVVYE646KFJW5A/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NAC5VU7FPTVIJBB3Q2WATBBDOFVKZKVIPU3O74ZLEQDLVXAUAGAA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/CVPKSGZV7FTBR23YK4JEVLZ5O4JZWAI67VAN3CFZPWMMCHJLZH3Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/KBFGCG4YRKEV3U56HOXD6WGEAHKQL7ZG2NTHULGTBLKEJLP5LZNQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/XFSNYVFQMP6ODK4MTWFZLQIJTMGOKFN327AOPPHYBRI7VRWTTTZQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TBFU46SHUWRVAL4L6KMRTHXAWCSDUW3O347I5EKM7BJWZGMSIOWQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/SKZXTPMHRUHIHAYLUA7M6UDX4ZASJWIJZTEPHNUAATUR33YTVGTA/mul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/E7HVX2BZ6A2EWUTFWF5DDWPCTWPWUKJWW2CVAQEZMTM6CJHJHNGQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/QGZB2ZRA2LQTDR7RKMKUCJLRQLS7V26KYEBWWFQUMR346RRLB4RQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/12/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/10/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/8/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/15/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/4/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/9/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/13/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/6/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/2/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/1/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/3/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/0/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/B3G4XVS2FV5JYC2UQNSSML7MTGTEGBZXC34FPPGC77T5RMLIXOQQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/ABUILAJPK2TREHN6M3ZFBPL5SROUN5UEDNEHMJUM6TJ5A3SYDFDQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/S6QIMYTAOY5BGMSEOSS6NMYRDF3GP4LPD6LS6P5UPBOYUVDIRMMA/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/V4QBGM73VJDWWPKKKHQS4HZ2LUP7VLSE5DUGTMW7U5LZ6Q2DCENQ/_attn_fwd.ptx"
+      ],
+      "example": "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx"
+    },
+    "wgmma": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "commit_group": {
+      "count": 40,
+      "files": [
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/7/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/2/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/11/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/14/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/1/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/3/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/0/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/UPJD3Z74SJ7OX7B3SACD5WP2SK6M25TPSKE7QMNZB77V4Z4VNRFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/Y6ZGIHOPNW7STR4N6GBBD57TN55MDNST474VAW477RAAVIM77IUQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NK47JNZEJUJR5TXKPRRKUQU2WUXS33ZZN3XNPDBSGECZ5CAMKPFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TZ2ZVCKWRVMUO4CVCLBEXGO4H7GYAGEUL7AGW2354PDTRL5I654Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/GA7RSE4UHX7ROV5ZDGXLRL4CMBYQX6J3TFGSCXELVWHFLVS32YKA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/DJVLBA56V32RTKGMUEPWDFD2O5ADLY7PAECY3M4WN6R5HHX37PJQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/2AIIS5QJCLT6V2JW5KICJPVDPQBSLO4KZQKVZYW4ZELQO6SLF7KQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/ZAMIQB26HIWN3G4UNSB7NU52ZSXXZ2VFT77ZYHQJ3R5FGJO3UAPQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/FE7ICRIK7FO62DAFWIBFHLXKUJ2RRKU46FZZVIJVVYE646KFJW5A/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NAC5VU7FPTVIJBB3Q2WATBBDOFVKZKVIPU3O74ZLEQDLVXAUAGAA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/CVPKSGZV7FTBR23YK4JEVLZ5O4JZWAI67VAN3CFZPWMMCHJLZH3Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/KBFGCG4YRKEV3U56HOXD6WGEAHKQL7ZG2NTHULGTBLKEJLP5LZNQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/XFSNYVFQMP6ODK4MTWFZLQIJTMGOKFN327AOPPHYBRI7VRWTTTZQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TBFU46SHUWRVAL4L6KMRTHXAWCSDUW3O347I5EKM7BJWZGMSIOWQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/E7HVX2BZ6A2EWUTFWF5DDWPCTWPWUKJWW2CVAQEZMTM6CJHJHNGQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/QGZB2ZRA2LQTDR7RKMKUCJLRQLS7V26KYEBWWFQUMR346RRLB4RQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/12/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/10/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/8/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/15/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/4/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/9/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/13/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/6/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/2/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/1/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/3/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/0/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/B3G4XVS2FV5JYC2UQNSSML7MTGTEGBZXC34FPPGC77T5RMLIXOQQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/ABUILAJPK2TREHN6M3ZFBPL5SROUN5UEDNEHMJUM6TJ5A3SYDFDQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/S6QIMYTAOY5BGMSEOSS6NMYRDF3GP4LPD6LS6P5UPBOYUVDIRMMA/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/V4QBGM73VJDWWPKKKHQS4HZ2LUP7VLSE5DUGTMW7U5LZ6Q2DCENQ/_attn_fwd.ptx"
+      ],
+      "example": "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx"
+    },
+    "wait_group": {
+      "count": 40,
+      "files": [
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/7/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/2/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/11/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/14/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/1/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/3/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/0/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/UPJD3Z74SJ7OX7B3SACD5WP2SK6M25TPSKE7QMNZB77V4Z4VNRFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/Y6ZGIHOPNW7STR4N6GBBD57TN55MDNST474VAW477RAAVIM77IUQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NK47JNZEJUJR5TXKPRRKUQU2WUXS33ZZN3XNPDBSGECZ5CAMKPFA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TZ2ZVCKWRVMUO4CVCLBEXGO4H7GYAGEUL7AGW2354PDTRL5I654Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/GA7RSE4UHX7ROV5ZDGXLRL4CMBYQX6J3TFGSCXELVWHFLVS32YKA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/DJVLBA56V32RTKGMUEPWDFD2O5ADLY7PAECY3M4WN6R5HHX37PJQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/2AIIS5QJCLT6V2JW5KICJPVDPQBSLO4KZQKVZYW4ZELQO6SLF7KQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/ZAMIQB26HIWN3G4UNSB7NU52ZSXXZ2VFT77ZYHQJ3R5FGJO3UAPQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/FE7ICRIK7FO62DAFWIBFHLXKUJ2RRKU46FZZVIJVVYE646KFJW5A/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/NAC5VU7FPTVIJBB3Q2WATBBDOFVKZKVIPU3O74ZLEQDLVXAUAGAA/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/CVPKSGZV7FTBR23YK4JEVLZ5O4JZWAI67VAN3CFZPWMMCHJLZH3Q/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/KBFGCG4YRKEV3U56HOXD6WGEAHKQL7ZG2NTHULGTBLKEJLP5LZNQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/XFSNYVFQMP6ODK4MTWFZLQIJTMGOKFN327AOPPHYBRI7VRWTTTZQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/TBFU46SHUWRVAL4L6KMRTHXAWCSDUW3O347I5EKM7BJWZGMSIOWQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/E7HVX2BZ6A2EWUTFWF5DDWPCTWPWUKJWW2CVAQEZMTM6CJHJHNGQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/raw/QGZB2ZRA2LQTDR7RKMKUCJLRQLS7V26KYEBWWFQUMR346RRLB4RQ/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/12/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/10/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/8/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/15/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/4/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/9/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/13/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/6/matmul_kernel.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/2/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/1/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/3/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/0/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/B3G4XVS2FV5JYC2UQNSSML7MTGTEGBZXC34FPPGC77T5RMLIXOQQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/ABUILAJPK2TREHN6M3ZFBPL5SROUN5UEDNEHMJUM6TJ5A3SYDFDQ/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/S6QIMYTAOY5BGMSEOSS6NMYRDF3GP4LPD6LS6P5UPBOYUVDIRMMA/_attn_fwd.ptx",
+        "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gqa/raw/V4QBGM73VJDWWPKKKHQS4HZ2LUP7VLSE5DUGTMW7U5LZ6Q2DCENQ/_attn_fwd.ptx"
+      ],
+      "example": "/home/ubuntu/PTX_dataset/triton_ptx/sm80/gated_mlp/5/matmul_kernel.ptx"
+    },
+    "cp.async.bulk.tensor": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "cp.async.bulk.prefetch.tensor": {
+      "count": 0,
+      "files": [],
+      "example": null
+    },
+    "tensormap": {
+      "count": 0,
+      "files": [],
+      "example": null
+    }
+  }
+}
