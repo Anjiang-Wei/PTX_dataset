@@ -1,12 +1,25 @@
 import pytest
 import torch
 
+import os
+from pathlib import Path
+from triton_ptx_dump import dump_ptx_once, _collect_triton_bins
+
+
+_OUT_DIR = Path(__file__).with_suffix('').name         # "gated_mlp.py" -> "gated_mlp"
+_RAW_DIR = Path(_OUT_DIR) / "raw"                      # hashed bins live here
+_RAW_DIR.mkdir(parents=True, exist_ok=True)
+
+os.environ["TRITON_CACHE_DIR"] = str(_RAW_DIR.resolve())
+os.environ["TRITON_DUMP_ASM"] = "1"
+print(f"[ptx-dump] Triton dumping into: {_RAW_DIR}")
+
 import triton
 import triton.language as tl
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-b', '--batch', type=int, required=True)
+parser.add_argument('-b', '--batch', type=int, required=False, default=1)
 args = parser.parse_args()
 print("Batch size", args.batch)
 
@@ -53,7 +66,7 @@ def _rms_norm_fwd_fused(
         g = tl.load(G + cols, mask=mask)
         x = tl.load(X + cols, mask=mask, other=0.).to(tl.float32)
         x_hat = (x - mean) * rstd
-        y = x_hat * g,
+        y = x_hat * g
         # Write output
         tl.store(Y + cols, y, mask=mask)
 
@@ -119,3 +132,4 @@ def bench_test(BATCH, mode, provider, dtype=torch.float16, device="cuda"):
 
 # only works on post-Ampere GPUs right now
 bench_test.run(save_path=".", print_data=True)
+_collect_triton_bins(_RAW_DIR, Path(_OUT_DIR))
