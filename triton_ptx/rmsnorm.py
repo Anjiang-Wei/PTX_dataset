@@ -23,7 +23,18 @@ parser.add_argument('-b', '--batch', type=int, required=False, default=1)
 args = parser.parse_args()
 print("Batch size", args.batch)
 
+# -----------------------------------------------------------------------------
+# Autotune configs: ONLY launch parameters (same kernel body)
+#   - Do NOT vary BLOCK_SIZE or other constexprs; that would recompile a new body
+#   - Key on N (feature dim), which determines the specialization we’re using
+# -----------------------------------------------------------------------------
+AUTOTUNE_CONFIGS = [
+    triton.Config({}, num_warps=2),
+    triton.Config({}, num_warps=4),
+    triton.Config({}, num_warps=8),
+]
 
+@triton.autotune(configs=AUTOTUNE_CONFIGS, key=['N'])
 @triton.jit
 def _rms_norm_fwd_fused(
     X,  # pointer to the input
@@ -85,10 +96,10 @@ class _rmsnorm(torch.autograd.Function):
         MAX_FUSED_SIZE = 65536 // X.element_size()
         BLOCK_SIZE = min(MAX_FUSED_SIZE, triton.next_power_of_2(N))
         if N > BLOCK_SIZE: raise RuntimeError("This layer norm doesn't support feature dim >= 64KB.")
-        num_warps = min(max(BLOCK_SIZE // 256, 1), 8)
+        # num_warps = min(max(BLOCK_SIZE // 256, 1), 8)
         _rms_norm_fwd_fused[(M, )](
             X_arg, Y, G, Mean=mean, Rstd=rstd,
-            stride=X_arg.stride(0), N=N, BLOCK_SIZE=BLOCK_SIZE, num_warps=num_warps, num_ctas=1)
+            stride=X_arg.stride(0), N=N, BLOCK_SIZE=BLOCK_SIZE)
         Y = rms_norm4k(X)
         Z = torch.matmul(Y, W)
         return Z
