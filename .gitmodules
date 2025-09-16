@@ -7,3 +7,6 @@
 [submodule "tvm_ptx"]
 	path = tvm_ptx
 	url = git@github.com:Anjiang-Wei/TVM_PTX.git
+[submodule "tilelang"]
+	path = tilelang
+	url = git@github.com:Anjiang-Wei/tilelang_PTX.git
