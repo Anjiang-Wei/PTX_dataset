@@ -3,6 +3,12 @@
 // https://github.com/TianhuaTao/Megatron-DeepSpeed/commit/5478d67ef2048481e651a05053487fba029c3210
 // SOURCE: https://github.com/NVIDIA/Megatron-LM/commit/5478d67ef2048481e651a05053487fba029c3210
 
+#include <cuda_runtime.h>
+#include <cuda_fp16.h>
+
+#define WARP_SHFL_XOR(var, laneMask) __shfl_xor_sync(0xffffffff, var, laneMask)
+#define __requires(x) /* assume x is true */
+
 template<typename T, typename U, typename V> __global__
 void cuComputeGradInput(
     const V* __restrict__ dout,
@@ -123,3 +129,17 @@ void cuComputeGradInput(
     __syncthreads(); // <- BUG
   }
 }
+
+// Explicit template instantiation to force code generation
+template __global__ void cuComputeGradInput<float, float, float>(
+    const float* __restrict__ dout,
+    const float* __restrict__ input,
+    const int n1,
+    const int n2,
+    const float* __restrict__ mean,
+    const float* __restrict__ invvar,
+    float epsilon,
+    const float* gamma,
+    float* grad_input,
+    int has_gamma
+);

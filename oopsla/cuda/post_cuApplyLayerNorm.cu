@@ -2,6 +2,12 @@
 //--gridDim=[32,32] --blockDim=[512,512]
 // SOURCE: https://github.com/NVIDIA/Megatron-LM/commit/1ec6b0e941b4e324602d3fd6a955f28cd334a383
 
+#include <cuda_runtime.h>
+#include <cuda_fp16.h>
+
+#define WARP_SHFL(var, srcLane) __shfl_sync(0xffffffff, var, srcLane)
+#define __requires(x) /* assume x is true */
+
 template<typename U> __device__
 void cuWelfordOnlineSum(
   const U curr,
@@ -174,3 +180,18 @@ void cuApplyLayerNorm(
     __syncthreads(); // <- BUG
   }
 }
+
+// Explicit template instantiation to force code generation
+template __global__ void cuApplyLayerNorm<float, float, float>(
+  float* __restrict__ output_vals,
+  float* __restrict__ mean,
+  float* __restrict__ invvar,
+  const float* __restrict__ vals,
+  const int n1,
+  const int n2,
+  const float epsilon,
+  const float* __restrict__ gamma,
+  const float* __restrict__ beta,
+  int has_gamma,
+  int has_beta
+);
