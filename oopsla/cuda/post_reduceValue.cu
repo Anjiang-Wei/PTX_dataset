@@ -1,3 +1,9 @@
+#include "vector_utils.cuh"
+
+#include <cuda_runtime.h>
+#include <vector_types.h>
+#include <vector_functions.h>
+
 //pass
 //--blockDim=1024 --gridDim=1
 // SOURCE: https://github.com/openmm/openmm/commit/de666e305b61a1cff0bfc7d7f51c23de5d13ff43#diff-61d236e0ffbb53c3b2b72982769e03a93b3b668ba5323d514a51c2465acc58c0
@@ -37,7 +43,7 @@ extern "C" __global__ void computeRMSDPart1(int numParticles, const float4* __re
 
     // Compute the center of the particle positions.
     
-    float3 center = make_float3(0);
+    float3 center = make_float3(0.0f,0.0f,0.0f);
     for (int i = threadIdx.x; i < numParticles; i += blockDim.x)
         center += trimTo3(posq[particles[i]]);
     center.x = reduceValue(center.x, temp)/numParticles;
