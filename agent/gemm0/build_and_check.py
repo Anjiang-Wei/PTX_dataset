@@ -4,14 +4,16 @@ import os, subprocess, sys, textwrap, shutil
 # --- Configuration ---
 M, N, K = 4096, 4096, 4096
 ALPHA, BETA = 1.0, 0.0
-BLOCKSIZE = 32  # used by baseline kernel only (hard-coded into base_full.cu)
+# Baseline uses same tile size as optimized but simpler implementation
+BASE_TILE_M = 128
+BASE_TILE_N = 128
+BASE_THREADS = 512  # 1D block with 512 threads (same as optimized)
 SM_ARCH = "sm_80"
 
 # Launch params for the optimized kernel (must match opt.cu hyperparams)
 OPT_TILE_M = 128
 OPT_TILE_N = 128
-OPT_THREADS_X = 32
-OPT_THREADS_Y = 8
+OPT_THREADS = 512  # 1D block with 512 threads
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_SRC_FILE = os.path.join(SCRIPT_DIR, "base.cu")
@@ -37,36 +39,45 @@ HARNESS_TEMPLATE = """
 #define ALPHA {ALPHA}f
 #define BETA {BETA}f
 
+// Launch config for baseline kernel (must match base.cu)
+#define BASE_TILE_M {BASE_TILE_M}
+#define BASE_TILE_N {BASE_TILE_N}
+#define BASE_THREADS {BASE_THREADS}
+
 // Launch config for optimized kernel (must match opt.cu)
 #define OPT_TILE_M {OPT_TILE_M}
 #define OPT_TILE_N {OPT_TILE_N}
-#define OPT_THREADS_X {OPT_THREADS_X}
-#define OPT_THREADS_Y {OPT_THREADS_Y}
+#define OPT_THREADS {OPT_THREADS}
 
 {KERNEL_DECLS}
 
 #define CUDA_CHECK(x) do {{ cudaError_t e=x; if(e!=cudaSuccess){{ \
   fprintf(stderr,"CUDA error %s:%d: %s\\n",__FILE__,__LINE__,cudaGetErrorString(e)); exit(1);}} }}while(0)
 
-// Baseline launcher: 1D block of BLOCKSIZE*BLOCKSIZE threads
+// Baseline launcher: 1D grid, 1D block with BASE_THREADS threads, 128x128 tiles (same config as optimized)
 template <typename F>
-void launch_baseline(F kernel, const char* name, float* dA, float* dB, float* dC, int BLOCKSIZE) {{
-  dim3 grid((M+BLOCKSIZE-1)/BLOCKSIZE, (N+BLOCKSIZE-1)/BLOCKSIZE);
-  dim3 block(BLOCKSIZE * BLOCKSIZE);
-  printf("Launching %s with grid=(%d,%d) block=(%d)\\n",
-         name, grid.x, grid.y, block.x);
+void launch_baseline(F kernel, const char* name, float* dA, float* dB, float* dC) {{
+  int num_tiles_x = (N + BASE_TILE_N - 1) / BASE_TILE_N;
+  int num_tiles_y = (M + BASE_TILE_M - 1) / BASE_TILE_M;
+  int total_tiles = num_tiles_x * num_tiles_y;
+  dim3 grid(total_tiles);
+  dim3 block(BASE_THREADS);
+  printf("Launching %s with grid=(%d) block=(%d) tile=(%d,%d) num_tiles=(%dx%d)\\n",
+         name, grid.x, block.x, BASE_TILE_M, BASE_TILE_N, num_tiles_x, num_tiles_y);
   kernel<<<grid, block>>>(dA, dB, dC);
   CUDA_CHECK(cudaDeviceSynchronize());
 }}
 
-// Optimized launcher: 2D block (OPT_THREADS_X, OPT_THREADS_Y), 128x128 tiles
+// Optimized launcher: 1D grid, 1D block with OPT_THREADS threads, 128x128 tiles
 template <typename F>
 void launch_optimized(F kernel, const char* name, float* dA, float* dB, float* dC) {{
-  dim3 grid((N + OPT_TILE_N - 1) / OPT_TILE_N,
-            (M + OPT_TILE_M - 1) / OPT_TILE_M);
-  dim3 block(OPT_THREADS_X, OPT_THREADS_Y);
-  printf("Launching %s with grid=(%d,%d) block=(%d,%d) tile=(%d,%d)\\n",
-         name, grid.x, grid.y, block.x, block.y, OPT_TILE_M, OPT_TILE_N);
+  int num_tiles_x = (N + OPT_TILE_N - 1) / OPT_TILE_N;
+  int num_tiles_y = (M + OPT_TILE_M - 1) / OPT_TILE_M;
+  int total_tiles = num_tiles_x * num_tiles_y;
+  dim3 grid(total_tiles);
+  dim3 block(OPT_THREADS);
+  printf("Launching %s with grid=(%d) block=(%d) tile=(%d,%d) num_tiles=(%dx%d)\\n",
+         name, grid.x, block.x, OPT_TILE_M, OPT_TILE_N, num_tiles_x, num_tiles_y);
   kernel<<<grid, block>>>(dA, dB, dC);
   CUDA_CHECK(cudaDeviceSynchronize());
 }}
@@ -85,10 +96,10 @@ int main(){{
   CUDA_CHECK(cudaMemcpy(dB,hB,szB,cudaMemcpyHostToDevice));
   CUDA_CHECK(cudaMemset(dC1,0,szC)); CUDA_CHECK(cudaMemset(dC2,0,szC));
 
-  // Launch baseline (BLOCKSIZE*BLOCKSIZE threads)
-  launch_baseline(sgemm_global_mem_coalesce, "baseline", dA, dB, dC1, {BLOCKSIZE});
+  // Launch baseline (512 threads in 1D, 128x128 tiles, simple implementation)
+  launch_baseline(sgemm_global_mem_coalesce, "baseline", dA, dB, dC1);
 
-  // Launch optimized (32x8 threads, 128x128 tiles)
+  // Launch optimized (512 threads in 1D, 128x128 tiles)
   launch_optimized(sgemm_optimized, "optimized", dA, dB, dC2);
 
   float *hC1=(float*)malloc(szC),*hC2=(float*)malloc(szC);
@@ -117,7 +128,6 @@ def wrap_kernel(src, out):
     #define K {K}
     #define ALPHA {ALPHA}f
     #define BETA {BETA}f
-    const int BLOCKSIZE = {BLOCKSIZE}; // used only by baseline kernel
     """
     with open(out,"w") as f: f.write(textwrap.dedent(header)+body+"\n")
 
@@ -130,9 +140,10 @@ def write_harness():
     with open(os.path.join(OUTDIR,"harness.cu"),"w") as f:
         f.write(HARNESS_TEMPLATE.format(
             M=M, N=N, K=K, ALPHA=ALPHA, BETA=BETA,
-            BLOCKSIZE=BLOCKSIZE, SM_ARCH=SM_ARCH, KERNEL_DECLS=decls,
+            SM_ARCH=SM_ARCH, KERNEL_DECLS=decls,
+            BASE_TILE_M=BASE_TILE_M, BASE_TILE_N=BASE_TILE_N, BASE_THREADS=BASE_THREADS,
             OPT_TILE_M=OPT_TILE_M, OPT_TILE_N=OPT_TILE_N,
-            OPT_THREADS_X=OPT_THREADS_X, OPT_THREADS_Y=OPT_THREADS_Y))
+            OPT_THREADS=OPT_THREADS))
 
 def nvcc_compile():
     subprocess.check_call(["nvcc","-arch="+SM_ARCH,"-O3","-ptx",BASE_WRAPPER,"-o",BASE_PTX])
