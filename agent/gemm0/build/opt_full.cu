@@ -5,10 +5,10 @@
 #define K 4096
 #define ALPHA 1.0f
 #define BETA 0.0f
-const int BLOCKSIZE = 32; // used only by baseline kernel
 // opt.cu
 // Optimized SGEMM for A100 (sm_80) with 128x128x8 tiling.
 // Must match the declaration: extern __global__ void sgemm_optimized(...)
+// Uses 1D grid and 1D block with 512 threads per block.
 
 __global__
 void sgemm_optimized(const float* __restrict__ A,
@@ -17,17 +17,25 @@ void sgemm_optimized(const float* __restrict__ A,
     constexpr int TILE_M = 128;
     constexpr int TILE_N = 128;
     constexpr int TILE_K = 8;
-    constexpr int BLK_X  = 32;
-    constexpr int BLK_Y  = 8;
-    constexpr int RM     = TILE_M / BLK_Y;  // 16
+    constexpr int BLK_X  = 32;  // logical width
+    constexpr int BLK_Y  = 16;  // logical height (32*16 = 512 threads)
+    constexpr int RM     = TILE_M / BLK_Y;  // 8
     constexpr int RN     = TILE_N / BLK_X;  // 4
 
     __shared__ float As[TILE_M][TILE_K];
     __shared__ float Bs[TILE_K][TILE_N];
 
-    int tx = threadIdx.x, ty = threadIdx.y;
-    int block_m = blockIdx.y * TILE_M;
-    int block_n = blockIdx.x * TILE_N;
+    // 1D thread index -> 2D logical position
+    int tid = threadIdx.x;
+    int tx = tid % BLK_X;
+    int ty = tid / BLK_X;
+
+    // 1D block index -> 2D tile position
+    int num_tiles_x = (N + TILE_N - 1) / TILE_N;
+    int tile_x = blockIdx.x % num_tiles_x;
+    int tile_y = blockIdx.x / num_tiles_x;
+    int block_m = tile_y * TILE_M;
+    int block_n = tile_x * TILE_N;
 
     int row0 = block_m + ty * RM;
     int col0 = block_n + tx * RN;
@@ -35,8 +43,7 @@ void sgemm_optimized(const float* __restrict__ A,
     float acc[RM][RN] = {0};
 
     int num_tiles = (K + TILE_K - 1) / TILE_K;
-    int tid = ty * BLK_X + tx;
-    int THR = BLK_X * BLK_Y;
+    int THR = BLK_X * BLK_Y;  // 512 total threads
 
     for (int t = 0; t < num_tiles; ++t) {
         int aCol = t * TILE_K;
