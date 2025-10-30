@@ -10,11 +10,15 @@
 #define ALPHA 1.0f
 #define BETA 0.0f
 
-// Launch config for optimized kernel (must match opt.cu)
+// Launch config for baseline kernel (must match base.cu)
+#define BASE_TILE_M 64
+#define BASE_TILE_N 64
+#define BASE_THREADS 512
+
+// Launch config for optimized kernel with Tensor Cores (must match opt.cu)
 #define OPT_TILE_M 64
 #define OPT_TILE_N 64
-#define OPT_THREADS_X 32
-#define OPT_THREADS_Y 16
+#define OPT_THREADS 512
 
 
     extern __global__ void sgemm_global_mem_coalesce(const float*,const float*,float*);
@@ -23,25 +27,30 @@
 
 #define CUDA_CHECK(x) do { cudaError_t e=x; if(e!=cudaSuccess){   fprintf(stderr,"CUDA error %s:%d: %s\n",__FILE__,__LINE__,cudaGetErrorString(e)); exit(1);} }while(0)
 
-// Baseline launcher: 1D block of BLOCKSIZE*BLOCKSIZE threads
+// Baseline launcher: 1D grid, 1D block with BASE_THREADS threads, 64x64 tiles (same config as optimized)
 template <typename F>
-void launch_baseline(F kernel, const char* name, float* dA, float* dB, float* dC, int BLOCKSIZE) {
-  dim3 grid((M+BLOCKSIZE-1)/BLOCKSIZE, (N+BLOCKSIZE-1)/BLOCKSIZE);
-  dim3 block(BLOCKSIZE * BLOCKSIZE);
-  printf("Launching %s with grid=(%d,%d) block=(%d)\n",
-         name, grid.x, grid.y, block.x);
+void launch_baseline(F kernel, const char* name, float* dA, float* dB, float* dC) {
+  int num_tiles_x = (N + BASE_TILE_N - 1) / BASE_TILE_N;
+  int num_tiles_y = (M + BASE_TILE_M - 1) / BASE_TILE_M;
+  int total_tiles = num_tiles_x * num_tiles_y;
+  dim3 grid(total_tiles);
+  dim3 block(BASE_THREADS);
+  printf("Launching %s with grid=(%d) block=(%d) tile=(%d,%d) num_tiles=(%dx%d)\n",
+         name, grid.x, block.x, BASE_TILE_M, BASE_TILE_N, num_tiles_x, num_tiles_y);
   kernel<<<grid, block>>>(dA, dB, dC);
   CUDA_CHECK(cudaDeviceSynchronize());
 }
 
-// Optimized launcher: 2D block (OPT_THREADS_X, OPT_THREADS_Y), 128x128 tiles
+// Optimized launcher: 1D grid, 1D block with OPT_THREADS threads, 64x64 tiles with Tensor Cores
 template <typename F>
 void launch_optimized(F kernel, const char* name, float* dA, float* dB, float* dC) {
-  dim3 grid((N + OPT_TILE_N - 1) / OPT_TILE_N,
-            (M + OPT_TILE_M - 1) / OPT_TILE_M);
-  dim3 block(OPT_THREADS_X, OPT_THREADS_Y);
-  printf("Launching %s with grid=(%d,%d) block=(%d,%d) tile=(%d,%d)\n",
-         name, grid.x, grid.y, block.x, block.y, OPT_TILE_M, OPT_TILE_N);
+  int num_tiles_x = (N + OPT_TILE_N - 1) / OPT_TILE_N;
+  int num_tiles_y = (M + OPT_TILE_M - 1) / OPT_TILE_M;
+  int total_tiles = num_tiles_x * num_tiles_y;
+  dim3 grid(total_tiles);
+  dim3 block(OPT_THREADS);
+  printf("Launching %s with grid=(%d) block=(%d) tile=(%d,%d) num_tiles=(%dx%d)\n",
+         name, grid.x, block.x, OPT_TILE_M, OPT_TILE_N, num_tiles_x, num_tiles_y);
   kernel<<<grid, block>>>(dA, dB, dC);
   CUDA_CHECK(cudaDeviceSynchronize());
 }
@@ -60,10 +69,10 @@ int main(){
   CUDA_CHECK(cudaMemcpy(dB,hB,szB,cudaMemcpyHostToDevice));
   CUDA_CHECK(cudaMemset(dC1,0,szC)); CUDA_CHECK(cudaMemset(dC2,0,szC));
 
-  // Launch baseline (BLOCKSIZE*BLOCKSIZE threads)
-  launch_baseline(sgemm_global_mem_coalesce, "baseline", dA, dB, dC1, 32);
+  // Launch baseline (512 threads in 1D, 64x64 tiles, simple implementation)
+  launch_baseline(sgemm_global_mem_coalesce, "baseline", dA, dB, dC1);
 
-  // Launch optimized (32x8 threads, 128x128 tiles)
+  // Launch optimized (512 threads in 1D, 64x64 tiles with Tensor Cores)
   launch_optimized(sgemm_optimized, "optimized", dA, dB, dC2);
 
   float *hC1=(float*)malloc(szC),*hC2=(float*)malloc(szC);

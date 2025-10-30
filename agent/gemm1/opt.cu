@@ -1,6 +1,6 @@
 // opt.cu
 // Optimized SGEMM using advanced register blocking for A100 (sm_80)
-// Uses 128x128 tiles with 32x8 threads, each thread computing 16x4 outputs
+// Uses 128x128 tiles with 512 threads (1D), each thread computing 8x4 outputs
 
 __global__
 void sgemm_optimized(const float* __restrict__ A,
@@ -10,25 +10,29 @@ void sgemm_optimized(const float* __restrict__ A,
     constexpr int TILE_M = 128;
     constexpr int TILE_N = 128;
     constexpr int TILE_K = 16;
-    constexpr int BLK_X = 32;   // Threads in X (N) dimension
-    constexpr int BLK_Y = 8;    // Threads in Y (M) dimension
-    constexpr int REG_M = 16;   // Each thread computes 16 rows
+    constexpr int BLK_X = 32;   // Logical threads in X (N) dimension
+    constexpr int BLK_Y = 16;   // Logical threads in Y (M) dimension (32*16 = 512 threads)
+    constexpr int REG_M = 8;    // Each thread computes 8 rows
     constexpr int REG_N = 4;    // Each thread computes 4 cols
 
     // Shared memory with padding to avoid bank conflicts
     __shared__ float As[TILE_M][TILE_K + 4];
     __shared__ float Bs[TILE_K][TILE_N + 4];
 
-    int tx = threadIdx.x;  // 0-31
-    int ty = threadIdx.y;  // 0-7
-    int tid = ty * BLK_X + tx;
+    // 1D thread index -> 2D logical position
+    int tid = threadIdx.x;
+    int tx = tid % BLK_X;  // 0-31
+    int ty = tid / BLK_X;  // 0-15
 
-    // Block tile position
-    int blockM = blockIdx.y * TILE_M;
-    int blockN = blockIdx.x * TILE_N;
+    // 1D block index -> 2D tile position
+    int num_tiles_x = (N + TILE_N - 1) / TILE_N;
+    int tile_x = blockIdx.x % num_tiles_x;
+    int tile_y = blockIdx.x / num_tiles_x;
+    int blockM = tile_y * TILE_M;
+    int blockN = tile_x * TILE_N;
 
     // Thread's output position within the tile
-    int threadM = ty * REG_M;     // 0, 16, 32, ..., 112 (8 values)
+    int threadM = ty * REG_M;     // 0, 8, 16, ..., 120 (16 values)
     int threadN = tx * REG_N;     // 0, 4, 8, ..., 124 (32 values)
 
     // Register accumulation array
